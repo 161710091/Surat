@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class disposisis extends Model
 {
+    protected $table = 'disposisis';
     protected $fillable = ['disposisi'];
 
     public function Surat_Masuk()

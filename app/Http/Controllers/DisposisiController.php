@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\disposisis;
 
 class DisposisiController extends Controller
 {
@@ -13,7 +14,8 @@ class DisposisiController extends Controller
      */
     public function index()
     {
-        //
+        $dis = disposisis::all();
+        return view('disposisi.index', compact('dis'));
     }
 
     /**
@@ -23,7 +25,7 @@ class DisposisiController extends Controller
      */
     public function create()
     {
-        //
+        return view('disposisi.create');
     }
 
     /**
@@ -34,7 +36,14 @@ class DisposisiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'disposisi'=>'required|max:255',
+        ]);
+
+        $dis = new disposisis;
+        $dis->disposisi = $request->disposisi;
+        $dis->save();
+        return redirect()->route('disposisi.index');
     }
 
     /**
@@ -45,7 +54,8 @@ class DisposisiController extends Controller
      */
     public function show($id)
     {
-        //
+        $dis = disposisis::findOrFail($id);
+        return view('disposisi.show', compact('dis'));
     }
 
     /**
@@ -56,7 +66,8 @@ class DisposisiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dis = disposisis::findOrFail($id);
+        return view('disposisi.edit', compact('dis'));
     }
 
     /**
@@ -68,7 +79,14 @@ class DisposisiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'disposisi'=>'required|max:255',
+        ]);
+
+        $dis = disposisis::findOrFail($id);
+        $dis->disposisi = $request->disposisi;
+        $dis->save();
+        return redirect()->route('disposisi.index');
     }
 
     /**
@@ -79,6 +97,8 @@ class DisposisiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dis = disposisis::findOrFail($id);
+        $dis->delete();
+        return redirect()->route('disposisi.index');
     }
 }

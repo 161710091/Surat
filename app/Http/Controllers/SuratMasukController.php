@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\surat_masuks;
+use App\instansis;
+use App\disposisis;
 
 class SuratMasukController extends Controller
 {
@@ -14,7 +16,7 @@ class SuratMasukController extends Controller
      */
     public function index()
     {
-        $masuks = surat_masuks::all();
+        $masuks = surat_masuks::with('MDisposisi', 'MInstansi')->get();
         return view('masuk.index', compact('masuks'));
     }
 
@@ -25,7 +27,9 @@ class SuratMasukController extends Controller
      */
     public function create()
     {
-        //
+        $dis = disposisis::all();
+        $ins = instansis::all();
+        return view('masuk.create', compact('dis', 'ins'));
     }
 
     /**
@@ -36,7 +40,36 @@ class SuratMasukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'no_suratm' => 'required',
+            'tgl_suratm' => 'required',
+            'id_instansi' => 'required',
+            'perihalm' => 'required',
+            'id_disposisi' => 'required',
+            'ket_disposisim' => 'required',
+            'filem' => 'required',
+        ]);
+
+        $masuks = new surat_masuks;
+        $masuks->no_suratm = $request->no_suratm;
+        $masuks->tgl_suratm = $request->tgl_suratm;
+        $masuks->id_instansi = $request->id_instansi;
+        $masuks->perihalm = $request->perihalm;
+        $masuks->id_disposisi = $request->id_disposisi;
+        $masuks->ket_disposisim = $request->ket_disposisim;
+        $masuks->filem = $request->filem;
+
+        if ($request->hasFile('filem')) {
+            $filem = $request->file('filem');
+            foreach ($filem as $file) {
+            $destinationPath = public_path().'/assets/file/file-masuk/';
+            $filename = str_random(6).'_'.$file->getClientOriginalName();
+            $uploadSuccess = $file->move($destinationPath, $filename);
+            $masuks->filem = $filename;
+            }
+        }
+        $masuks->save();
+        return redirect()->route('surat_masuk.index');
     }
 
     /**
@@ -58,7 +91,12 @@ class SuratMasukController extends Controller
      */
     public function edit($id)
     {
-        //
+        $masuks = surat_masuks::findOrFail($id);
+        $ins = instansis::all();
+        $dis = disposisis::all();
+        $selectedins = surat_masuks::findOrFail($id)->id_instansi;
+        $selecteddis = surat_masuks::findOrFail($id)->id_disposisi;
+        return view('masuk.edit', compact('masuks', 'ins', 'dis', 'selecteddis', 'selectedins'));
     }
 
     /**
@@ -70,7 +108,43 @@ class SuratMasukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'no_suratm' => 'required',
+            'tgl_suratm' => 'required',
+            'id_instansi' => 'required',
+            'perihalm' => 'required',
+            'id_disposisi' => 'required',
+            'ket_disposisim' => 'required',
+            'filem' => 'required',
+        ]);
+
+        $masuks = surat_masuks::findOrFail($id);
+        $masuks->no_suratm = $request->no_suratm;
+        $masuks->tgl_suratm = $request->tgl_suratm;
+        $masuks->id_instansi = $request->id_instansi;
+        $masuks->perihalm = $request->perihalm;
+        $masuks->id_disposisi = $request->id_disposisi;
+        $masuks->ket_disposisim = $request->ket_disposisim;
+        $masuks->filem = $request->filem;
+        if ($request->hasFile('filem')) {
+            $file = $request->file('filem');
+            $destinationPath = public_path().'/assets/file/file-masuk/';
+            $filename = str_random(6).'_'.$file->getClientOriginalName();
+            $uploadSuccess = $file->move($destinationPath, $filename);
+    
+        if ($masuks->filem) {
+        $old_filem = $masuks->filem;
+        $filepath = public_path() . DIRECTORY_SEPARATOR . '/assets/file/file-masuk/'
+        . DIRECTORY_SEPARATOR . $masuks->filem;
+            try {
+            File::delete($filepath);
+            } catch (FileNotFoundException $e) {
+            }
+        }
+            $masuks->filem = $filename;
+        }
+        $masuks->save();
+        return redirect()->route('surat_masuk.index');
     }
 
     /**
@@ -81,6 +155,8 @@ class SuratMasukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $masuks = surat_masuks::findOrFail($id);
+        $masuks->delete();
+        return redirect()->route('surat_masuk.index');
     }
 }

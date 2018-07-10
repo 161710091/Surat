@@ -9,7 +9,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="{{ asset('assets/dist/css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/dist/css/ionicons.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
   <!-- iCheck -->
@@ -25,18 +25,17 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
-
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
   <!-- Navbar -->
-  @include('partial.nav')
+  @include('partials.nav')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  @include('partial.sidebar')
+  @include('partials.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -46,13 +45,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v2</li>
-            </ol>
-          </div><!-- /.col -->
+          </div>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -63,13 +56,8 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2018 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.0-alpha
-    </div>
-  </footer>
+  @include('partials.footer')
+  
 </div>
 <!-- ./wrapper -->
 

@@ -17,11 +17,11 @@ class CreateInstansisTable extends Migration
             $table->increments('id');
             $table->string('nama_instansi');
             $table->string('kab_kota');
-            $table->integer('telp');
+            $table->string('telp')->unique();
             $table->string('email')->unique();
             $table->string('alamat');
             $table->string('kepala');
-            $table->integer('nip_kepala');
+            $table->string('nip_kepala')->unique();
             $table->timestamps();
         });
     }

@@ -16,6 +16,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('surat_masuk', 'SuratMasukController');
+
+Route::group(['prefix'=>'Super Admin', 'middleware'=>['auth', 'role:Super Admin']],
+function() {
+	Route::resource('surat_masuk', 'SuratMasukController');
+	Route::resource('surat_keluar', 'SuratKeluarController');
+	Route::resource('user', 'UserController');
+	Route::resource('disposisi', 'DisposisiController');
+	Route::resource('instansi', 'InstansiController');
+});

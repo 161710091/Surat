@@ -19,6 +19,9 @@ class CreateSuratKeluarsTable extends Migration
             $table->date('tgl_suratk');
             $table->string('pengirimk');
             $table->string('perihalk');
+            $table->unsignedinteger('id_instansi');
+            $table->foreign('id_instansi')->references('id')->on('instansis')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->string('alamatk');
             $table->unsignedinteger('id_disposisi');
             $table->foreign('id_disposisi')->references('id')->on('disposisis')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->string('ket_disposisik');

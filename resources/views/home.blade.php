@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<section class="content">
+  <section class="content">
       <div class="container-fluid">
 
         <!-- Small boxes (Stat box) -->
@@ -17,7 +17,7 @@
               <div class="icon">
                 <i class="fa fa-users"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="/user" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!--  ./col -->
@@ -32,7 +32,7 @@
               <div class="icon">
                 <i class="fa fa-envelope"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="/surat_masuk" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -47,7 +47,7 @@
               <div class="icon">
                 <i class="fa fa-envelope-open"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="/surat_keluar" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -62,7 +62,7 @@
               <div class="icon">
                 <i class="fa fa-file"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="/disposisi" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

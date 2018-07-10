@@ -17,7 +17,8 @@ class CreateSuratMasuksTable extends Migration
             $table->increments('id');
             $table->string('no_suratm');
             $table->date('tgl_suratm');
-            $table->string('pengirimm');
+            $table->unsignedinteger('id_instansi');
+            $table->foreign('id_instansi')->references('id')->on('instansis')->onDelete('CASCADE')->onUpdate('CASCADE');            
             $table->string('perihalm');
             $table->unsignedinteger('id_disposisi');
             $table->foreign('id_disposisi')->references('id')->on('disposisis')->onDelete('CASCADE')->onUpdate('CASCADE');

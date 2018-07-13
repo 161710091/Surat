@@ -16,7 +16,6 @@ class CreateSuratKeluarsTable extends Migration
         Schema::create('surat_keluars', function (Blueprint $table) {
             $table->increments('id');
             $table->string('no_suratk');
-            $table->date('tgl_suratk');
             $table->string('pengirimk');
             $table->string('perihalk');
             $table->unsignedinteger('id_instansi');

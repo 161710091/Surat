@@ -10,7 +10,7 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<form action="{{ route('surat_masuk.update', $masuks->id) }}" method="post">
+						<form action="{{ route('surat_masuk.update', $masuks->id) }}" method="post" enctype="multipart/form-data">
 							<input type="hidden" name="_method" value="PATCH">
 							{{ csrf_field() }}
 
@@ -20,16 +20,6 @@
 								@if ($errors->has('no_suratm'))
 									<span class="help-block">
 										<strong>{{ $errors->first('no_suratm') }}</strong>
-									</span>
-								@endif
-							</div>
-
-							<div class="form-group {{ $errors->has('tgl_suratm') ? 'has-error' : '' }}">
-								<label class="control-label">tgl_suratm</label>
-								<input type="date" name="tgl_suratm" class="form-control" value="{{ $masuks->tgl_suratm }}" required>
-								@if ($errors->has('tgl_suratm'))
-									<span class="help-block">
-										<strong>{{ $errors->first('tgl_suratm') }}</strong>
 									</span>
 								@endif
 							</div>

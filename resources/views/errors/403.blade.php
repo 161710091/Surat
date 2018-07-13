@@ -1,76 +1,48 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
 
-        <title>Laravel</title>
+  <head>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>403</title>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-            .full-height {
-                height: 100vh;
-            }
+      <link rel="stylesheet" href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="{{ asset('assets/dist/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400" rel="stylesheet">
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+  </head>
 
-            .position-ref {
-                position: relative;
-            }
+  <body class="hold-transition sidebar-mini" style="align-content: center;">
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+    <section class="content" style="align-content: center;">
+      <div class="error-page">
+        <h2 class="headline text-warning"> 403</h2>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+        <div class="error-content">
+          <h3><i class="fa fa-warning text-warning"></i> Oops! Halaman Tidak Bisa Diakses.</h3>
 
-            .content {
-                text-align: center;
-            }
+          <p>
+            Halaman yang anda cari memiliki hak akses.
+            Mungkin, anda harus <a href="{{ route('home') }}">kembali ke dashboard.</a>
+          </p>
 
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            <div class="content">
-                <div class="title m-b-md">
-                    Maaf Halaman Tidak Bisa Diakses, Silahkan Kembali
-                </div>
-            </div>
         </div>
-    </body>
+        <!-- /.error-content -->
+      </div>
+      <!-- /.error-page -->
+    </section>
+    <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/fastclick/fastclick.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('assets/dist/js/adminlte.js') }}"></script>
+<script src="{{ asset('assets/dist/js/demo.js') }}"></script>
+  </body>
+
 </html>

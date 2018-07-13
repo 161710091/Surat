@@ -16,7 +16,6 @@ class CreateSuratMasuksTable extends Migration
         Schema::create('surat_masuks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('no_suratm');
-            $table->date('tgl_suratm');
             $table->unsignedinteger('id_instansi');
             $table->foreign('id_instansi')->references('id')->on('instansis')->onDelete('CASCADE')->onUpdate('CASCADE');            
             $table->string('perihalm');

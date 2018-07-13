@@ -10,7 +10,7 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<form action="{{ route('user.update', $users->id) }}" method="post">
+						<form action="{{ route('user.update', $users->id) }}" method="post" enctype="multipart/form-data">
 							<input type="hidden" name="_method" value="PATCH">
 							{{ csrf_field() }}
 

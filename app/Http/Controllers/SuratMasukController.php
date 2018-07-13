@@ -42,7 +42,6 @@ class SuratMasukController extends Controller
     {
         $request->validate([
             'no_suratm' => 'required',
-            'tgl_suratm' => 'required',
             'id_instansi' => 'required',
             'perihalm' => 'required',
             'id_disposisi' => 'required',
@@ -52,21 +51,17 @@ class SuratMasukController extends Controller
 
         $masuks = new surat_masuks;
         $masuks->no_suratm = $request->no_suratm;
-        $masuks->tgl_suratm = $request->tgl_suratm;
         $masuks->id_instansi = $request->id_instansi;
         $masuks->perihalm = $request->perihalm;
         $masuks->id_disposisi = $request->id_disposisi;
         $masuks->ket_disposisim = $request->ket_disposisim;
         $masuks->filem = $request->filem;
-
         if ($request->hasFile('filem')) {
-            $filem = $request->file('filem');
-            foreach ($filem as $file) {
+            $file = $request->file('filem');
             $destinationPath = public_path().'/assets/file/file-masuk/';
             $filename = str_random(6).'_'.$file->getClientOriginalName();
             $uploadSuccess = $file->move($destinationPath, $filename);
             $masuks->filem = $filename;
-            }
         }
         $masuks->save();
         return redirect()->route('surat_masuk.index');
@@ -80,7 +75,10 @@ class SuratMasukController extends Controller
      */
     public function show($id)
     {
-        //
+        $masuks = surat_masuks::findOrFail($id);
+        $dis = disposisis::all();
+        $ins = instansis::all();
+        return view('masuk.show', compact('masuks', 'dis', 'ins'));
     }
 
     /**
@@ -110,7 +108,6 @@ class SuratMasukController extends Controller
     {
         $request->validate([
             'no_suratm' => 'required',
-            'tgl_suratm' => 'required',
             'id_instansi' => 'required',
             'perihalm' => 'required',
             'id_disposisi' => 'required',
@@ -120,27 +117,17 @@ class SuratMasukController extends Controller
 
         $masuks = surat_masuks::findOrFail($id);
         $masuks->no_suratm = $request->no_suratm;
-        $masuks->tgl_suratm = $request->tgl_suratm;
         $masuks->id_instansi = $request->id_instansi;
         $masuks->perihalm = $request->perihalm;
         $masuks->id_disposisi = $request->id_disposisi;
         $masuks->ket_disposisim = $request->ket_disposisim;
         $masuks->filem = $request->filem;
+        
         if ($request->hasFile('filem')) {
             $file = $request->file('filem');
             $destinationPath = public_path().'/assets/file/file-masuk/';
             $filename = str_random(6).'_'.$file->getClientOriginalName();
             $uploadSuccess = $file->move($destinationPath, $filename);
-    
-        if ($masuks->filem) {
-        $old_filem = $masuks->filem;
-        $filepath = public_path() . DIRECTORY_SEPARATOR . '/assets/file/file-masuk/'
-        . DIRECTORY_SEPARATOR . $masuks->filem;
-            try {
-            File::delete($filepath);
-            } catch (FileNotFoundException $e) {
-            }
-        }
             $masuks->filem = $filename;
         }
         $masuks->save();

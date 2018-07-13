@@ -11,7 +11,11 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+          @if (Auth::user()->avatar==null)
+          <img src="{{ asset('assets/dist/img/images.png') }}" class="img-circle elevation-2" alt="User Image">
+          @else
+          <img src="{{ asset('assets/img/avatar/'.Auth::user()->avatar) }}" class="img-circle elevation-2" alt="User Image">
+          @endif
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ Auth::user()->name }}</a>
@@ -80,12 +84,6 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/user" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Setting Profile</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
@@ -100,6 +98,46 @@
             </ul>
           </li>
           @else
+          <li class="nav-item">
+            <a href="/home" class="nav-link ">
+              <i class="nav-icon fa fa-dashboard"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('surat_masuk.index') }}" class="nav-link">
+              <i class="nav-icon fa fa-envelope-o"></i>
+              <p>
+                Surat Masuk
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('surat_keluar.index') }}" class="nav-link">
+              <i class="nav-icon fa fa-envelope-open-o"></i>
+              <p>
+                Surat Keluar
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('disposisi.index') }}" class="nav-link">
+              <i class="nav-icon fa fa-file-o"></i>
+              <p>
+                Disposisi
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('instansi.index') }}" class="nav-link">
+              <i class="nav-icon fa fa-building-o"></i>
+              <p>
+                Instansi
+              </p>
+            </a>
+          </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-cog"></i>
@@ -109,18 +147,6 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('user.index') }}" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>User</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/user" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Setting Profile</p>
-                </a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
@@ -133,6 +159,8 @@
                                         @csrf
                 </form>
               </li>
+            </ul>
+          </li>
           @endrole
         </ul>
       </nav>

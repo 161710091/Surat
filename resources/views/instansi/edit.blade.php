@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 	<div class="row">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="col-md-12">
 				<div class="card card-primary">
 					<div class="card-header">Edit Instansi

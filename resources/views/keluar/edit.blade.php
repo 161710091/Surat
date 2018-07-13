@@ -10,7 +10,7 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<form action="{{ route('surat_keluar.update', $keluars->id) }}" method="post">
+						<form action="{{ route('surat_keluar.update', $keluars->id) }}" method="post" enctype="multipart/form-data">
 							<input type="hidden" name="_method" value="PATCH">
 							{{ csrf_field() }}
 
@@ -20,16 +20,6 @@
 								@if ($errors->has('no_suratk'))
 									<span class="help-block">
 										<strong>{{ $errors->first('no_suratk') }}</strong>
-									</span>
-								@endif
-							</div>
-
-							<div class="form-group {{ $errors->has('tgl_suratk') ? 'has-error' : '' }}">
-								<label class="control-label">Tanggal Surat</label>
-								<input type="date" name="tgl_suratk" class="form-control" value="{{ $keluars->tgl_suratk }}" required>
-								@if ($errors->has('tgl_suratk'))
-									<span class="help-block">
-										<strong>{{ $errors->first('tgl_suratk') }}</strong>
 									</span>
 								@endif
 							</div>
@@ -55,7 +45,7 @@
 							</div>
 
 							<div class="form-group {{ $errors->has('id_instansi') ? 'has-error' : '' }}">
-								<label class="control-label">Instansi Pengirim</label>
+								<label class="control-label">Dituju</label>
 								<select name="id_instansi" class="form-control" required>
 									@foreach($ins as $data)
 										<option value="{{ $data->id }}" {{ $selectedins == $data->id ? 'selected="selected"' : '' }}>

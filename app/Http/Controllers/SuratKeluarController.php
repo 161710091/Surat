@@ -42,7 +42,6 @@ class SuratKeluarController extends Controller
     {
         $request->validate([
             'no_suratk' => 'required',
-            'tgl_suratk' => 'required',
             'pengirimk' => 'required',
             'perihalk' => 'required',
             'id_instansi' => 'required',
@@ -54,7 +53,6 @@ class SuratKeluarController extends Controller
 
         $keluars = new surat_keluars;
         $keluars->no_suratk = $request->no_suratk;
-        $keluars->tgl_suratk = $request->tgl_suratk;
         $keluars->pengirimk = $request->pengirimk;
         $keluars->perihalk = $request->perihalk;
         $keluars->id_instansi = $request->id_instansi;
@@ -67,9 +65,10 @@ class SuratKeluarController extends Controller
             $file = $request->file('filek');
             $destinationPath = public_path().'/assets/file/file-keluar/';
             $filename = str_random(6).'_'.$file->getClientOriginalName();
-            $uploadSuccess = $file->move($destinationPath, $filename);
+            $size = $request->file('filek')->getClientSize();
+            $uploadSuccess = $file->move($destinationPath, $filename, $size);
             $keluars->filek = $filename;
-            }
+        }
         $keluars->save();
         return redirect()->route('surat_keluar.index');
     }
@@ -82,7 +81,10 @@ class SuratKeluarController extends Controller
      */
     public function show($id)
     {
-        //
+        $keluars = surat_keluars::findOrFail($id);
+        $dis = disposisis::all();
+        $ins = instansis::all();
+        return view('keluar.show', compact('keluars', 'dis', 'ins'));
     }
 
     /**
@@ -110,7 +112,37 @@ class SuratKeluarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'no_suratk' => 'required',
+            'pengirimk' => 'required',
+            'perihalk' => 'required',
+            'id_instansi' => 'required',
+            'alamatk' => 'required',
+            'id_disposisi' => 'required',
+            'ket_disposisik' => 'required',
+            'filek' => 'required',
+        ]);
+
+        $keluars = surat_keluars::findOrFail($id);
+        $keluars->no_suratk = $request->no_suratk;
+        $keluars->pengirimk = $request->pengirimk;
+        $keluars->perihalk = $request->perihalk;
+        $keluars->id_instansi = $request->id_instansi;
+        $keluars->alamatk = $request->alamatk;
+        $keluars->id_disposisi = $request->id_disposisi;
+        $keluars->ket_disposisik = $request->ket_disposisik;
+        $keluars->filek = $request->filek;
+
+        if ($request->hasFile('filek')) {
+            $file = $request->file('filek');
+            $destinationPath = public_path().'/assets/file/file-keluar/';
+            $filename = str_random(6).'_'.$file->getClientOriginalName();
+            $size = $request->file('filek')->getClientSize();
+            $uploadSuccess = $file->move($destinationPath, $filename, $size);
+            $keluars->filek = $filename;
+        }
+        $keluars->save();
+        return redirect()->route('surat_keluar.index');
     }
 
     /**

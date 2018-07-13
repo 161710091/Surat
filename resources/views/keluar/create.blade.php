@@ -10,7 +10,7 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<form action="{{ route('surat_keluar.store') }}" method="post" enctype="multipart/data-form">
+						<form action="{{ route('surat_keluar.store') }}" method="post" enctype="multipart/form-data">
 							{{ csrf_field() }}
 
 							<div class="form-group {{ $errors->has('no_suratk') ? 'has-error' : '' }}">
@@ -19,16 +19,6 @@
 								@if ($errors->has('no_suratk'))
 									<span class="help-block">
 										<strong>{{ $errors->first('no_suratk') }}</strong>
-									</span>
-								@endif
-							</div>
-
-							<div class="form-group {{ $errors->has('tgl_suratk') ? 'has-error' : '' }}">
-								<label class="control-label">Tanggal Masuk</label>
-								<input type="date" name="tgl_suratk" class="form-control" required>
-								@if ($errors->has('tgl_suratk'))
-									<span class="help-block">
-										<strong>{{ $errors->first('tgl_suratk') }}</strong>
 									</span>
 								@endif
 							</div>
@@ -54,7 +44,7 @@
 							</div>
 
 							<div class="form-group {{ $errors->has('id_instansi') ? 'has-error' : '' }}">
-								<label class="control-label">Instansi Pengirim</label>
+								<label class="control-label">Dituju</label>
 								<select name="id_instansi" class="form-control" required>
 									<option>Pilih Instansi</option>
 									@foreach($ins as $data)
@@ -110,7 +100,7 @@
 
 							<div class="form-group {{ $errors->has('filek') ? 'has-error' : '' }}">
 								<label class="control-label">File</label>
-								<input type="file" name="filek" class="form-control" required>
+								<input type="file" name="filek" class="form-control" required multiple>
 								@if ($errors->has('filek'))
 									<span class="help-block">
 										<strong>{{ $errors->first('filek') }}</strong>

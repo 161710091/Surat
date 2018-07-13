@@ -10,14 +10,16 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>
+                  {{ $sm }}
+                </h3>
 
-                <p>User</p>
+                <p>Surat Masuk</p>
               </div>
               <div class="icon">
-                <i class="fa fa-users"></i>
+                <i class="fa fa-envelope"></i>
               </div>
-              <a href="/user" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('surat_masuk.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!--  ./col -->
@@ -25,14 +27,14 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53</h3>
+                <h3>{{ $sk }}</h3>
 
-                <p>Surat Masuk</p>
+                <p>Surat Keluar</p>
               </div>
               <div class="icon">
-                <i class="fa fa-envelope"></i>
+                <i class="fa fa-envelope-open"></i>
               </div>
-              <a href="/surat_masuk" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('surat_keluar.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -40,14 +42,14 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{ $dis }}</h3>
 
-                <p>Surat Keluar</p>
+                <p>Disposisi</p>
               </div>
               <div class="icon">
-                <i class="fa fa-envelope-open"></i>
+                <i class="fa fa-file"></i>
               </div>
-              <a href="/surat_keluar" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('disposisi.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -55,14 +57,14 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3>{{ $user }}</h3>
 
-                <p>Disposisi</p>
+                <p>Users</p>
               </div>
               <div class="icon">
-                <i class="fa fa-file"></i>
+                <i class="fa fa-user"></i>
               </div>
-              <a href="/disposisi" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('user.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

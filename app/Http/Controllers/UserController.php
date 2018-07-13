@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('Role')->get();
         return view('user.index', compact('users'));
     }
 
@@ -55,7 +55,7 @@ class UserController extends Controller
             $filename = str_random(6).'_'.$file->getClientOriginalName();
             $uploadSuccess = $file->move($destinationPath, $filename);
             $user->avatar = $filename;
-        }        
+        }
         $user->save();
         $memberRole = Role::where('name', 'Admin')->first();
         $user->attachRole($memberRole);
@@ -112,17 +112,7 @@ class UserController extends Controller
             $destinationPath = public_path().'/assets/img/avatar/';
             $filename = str_random(6).'_'.$file->getClientOriginalName();
             $uploadSuccess = $file->move($destinationPath, $filename);
-    
-        if ($users->avatar) {
-        $old_foto = $users->avatar;
-        $filepath = public_path() . DIRECTORY_SEPARATOR . '/assets/img/avatar'
-        . DIRECTORY_SEPARATOR . $users->avatar;
-            try {
-                File::delete($filepath);
-            } catch (FileNotFoundException $e) {
-            }
-        }
-        $users->avatar = $filename;
+            $users->avatar = $filename;
         }
         $users->save();
         return redirect()->route('user.index');

@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Laratrust\LaratrustFacade as Laratrust;
+use App\surat_masuks;
+use App\surat_keluars;
+use App\disposisis;
+use App\instansis;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -24,18 +29,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view ('home');
-        // if (Laratrust::hasRole('Super Admin')) return $this->adminDashboard();
-        // if (Laratrust::hasRole('Admin')) return $this->memberDashboard();
+        $sm = surat_masuks::count();
+        $sk = surat_keluars::count();
+        $dis = disposisis::count();
+        $ins = instansis::count();
+        $user = User::count();
+        return View('home', compact('sm', 'sk', 'dis', 'ins', 'user'));
+        if (Laratrust::hasRole('Super Admin')) return $this->adminDashboard();
+        if (Laratrust::hasRole('Admin')) return $this->memberDashboard();
     }
 
-    // protected function adminDashboard()
-    // {
-    //     return view('home');
-    // }
+    protected function adminDashboard()
+    {
+        return view('home');
+    }
 
-    // protected function memberDashboard()
-    // {
-    //     return view('home');
-    // }
+    protected function memberDashboard()
+    {
+        return view('home');
+    }
 }

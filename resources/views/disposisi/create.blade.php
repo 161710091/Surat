@@ -6,7 +6,7 @@
 				<div class="card card-info">
 					<div class="card-header">Add Disposisi
 						<div class="panel-title pull-right">
-							<a href="{{route('disposisi.index')}}" class="fa fa-arrow-left"></a>
+							<a href="{{route('disposisi.index')}}" class="fa fa-arrow-left">Add</a>
 						</div>
 					</div>
 					<div class="card-body">

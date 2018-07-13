@@ -10,7 +10,7 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<form action="{{ route('surat_masuk.store') }}" method="post" enctype="multipart/data-form">
+						<form action="{{ route('surat_masuk.store') }}" method="post" enctype="multipart/form-data">
 							{{ csrf_field() }}
 
 							<div class="form-group {{ $errors->has('no_suratm') ? 'has-error' : '' }}">
@@ -19,16 +19,6 @@
 								@if ($errors->has('no_suratm'))
 									<span class="help-block">
 										<strong>{{ $errors->first('no_suratm') }}</strong>
-									</span>
-								@endif
-							</div>
-
-							<div class="form-group {{ $errors->has('tgl_suratm') ? 'has-error' : '' }}">
-								<label class="control-label">Tanggal Masuk</label>
-								<input type="date" name="tgl_suratm" class="form-control" required>
-								@if ($errors->has('tgl_suratm'))
-									<span class="help-block">
-										<strong>{{ $errors->first('tgl_suratm') }}</strong>
 									</span>
 								@endif
 							</div>
@@ -89,7 +79,7 @@
 
 							<div class="form-group {{ $errors->has('filem') ? 'has-error' : '' }}">
 								<label class="control-label">File</label>
-								<input type="file" name="filem" class="form-control" required>
+								<input type="file" name="filem" class="form-control" required multiple>
 								@if ($errors->has('filem'))
 									<span class="help-block">
 										<strong>{{ $errors->first('filem') }}</strong>

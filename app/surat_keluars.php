@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class surat_keluars extends Model
 {
-    protected $fillable = ['no_suratk', 'tgl_suratk', 'pengirimk', 'perihalk', 'id_instansi', 'alamatk', 'id_disposisi', 'ket_disposisik', 'filek'];
+    protected $fillable = ['no_suratk', 'pengirimk', 'perihalk', 'id_instansi', 'alamatk', 'id_disposisi', 'ket_disposisik', 'filek'];
 
     public function KDisposisi()
     {
